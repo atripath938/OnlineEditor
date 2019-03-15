@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="WordSearchApp:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/WordSearchApp_war_exploded</output-path>
-    <root id="root">
+  <artifact type="war" name="WordSearchApp">
+    <output-path>$PROJECT_DIR$/out/artifacts/WordSearchApp</output-path>
+    <root id="archive" name="WordSearchApp.war">
       <element id="javaee-facet-resources" facet="WordSearchApp/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">

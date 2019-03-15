@@ -1,0 +1,19 @@
+#SearchBox {
+    border: 2px solid black;
+    width: 40%;
+    height: 30%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+
+body {
+    background-color: slategray;
+}
+
+#wordInputBox {
+    width: 80%;
+    height: 20%;
+    border-style: ridge;
+}
