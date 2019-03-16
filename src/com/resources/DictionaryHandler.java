@@ -17,7 +17,7 @@ public class DictionaryHandler {
     public static void createWordList() {
 
         if (!wordSetBuilt) {
-            File wordFile = new File("D:/IntelliJProjects/WordSearchApp/words.txt");
+            File wordFile = new File("/home/anurag/WordSearchApp/words.txt");
 
             try (BufferedReader reader = new BufferedReader(new FileReader(wordFile))) {
 
@@ -60,6 +60,10 @@ public class DictionaryHandler {
         }
 
         return false;
+    }
+
+    public static void main(String[] args) {
+        createWordList();
     }
 
 }

@@ -1,5 +1,7 @@
 package com.Search;
 
+import com.resources.DictionaryHandler;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +14,14 @@ public class SearchWord extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String word = request.getParameter("word");
+        String responseString;
+        boolean exists = DictionaryHandler.checkWordExists(word);
+        if(exists)
+            responseString="It is a valid word";
+        else{
 
-
-
+        }
     }
 
 }
