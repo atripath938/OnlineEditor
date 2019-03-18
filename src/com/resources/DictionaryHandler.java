@@ -17,7 +17,8 @@ public class DictionaryHandler {
     public static void createWordList() {
 
         if (!wordSetBuilt) {
-            File wordFile = new File("/home/anurag/WordSearchApp/words.txt");
+            //File wordFile = new File("/home/anurag/WordSearchApp/words.txt");
+            File wordFile = new File(System.getProperty("user.dir") + "/words.txt");
 
             try (BufferedReader reader = new BufferedReader(new FileReader(wordFile))) {
 
@@ -25,6 +26,8 @@ public class DictionaryHandler {
                 WordNode currentNode;
 
                 while (currentWord != null) {
+                    if (currentWord.equals("very"))
+                        System.out.println("Pausing here...");
                     currentNode = getRootNode();
                     for (int i = 0; i < currentWord.length(); i++) {
                         if (currentNode.NodeList[currentWord.charAt(i) - 'a'] == null)
@@ -38,6 +41,9 @@ public class DictionaryHandler {
             } catch (IOException | NullPointerException e) {
                 e.printStackTrace();
             }
+
+            wordSetBuilt = true;
+
         }
 
     }
@@ -46,13 +52,17 @@ public class DictionaryHandler {
 
         if (wordSetBuilt) {
 
+            String[] allWords = word.split(" ");
             WordNode node = rootNode;
 
-            for (int i = 0; i < word.length(); i++) {
-                if (node.NodeList[word.charAt(i) - 'a'] != null)
-                    node = node.NodeList[word.charAt(i) - 'a'];
-                else
-                    return false;
+            for (int wordNumber = 0; wordNumber < allWords.length; wordNumber++) {
+                node = rootNode;
+                for (int i = 0; i < allWords[wordNumber].length(); i++) {
+                    if (node.NodeList[allWords[wordNumber].charAt(i) - 'a'] != null)
+                        node = node.NodeList[allWords[wordNumber].charAt(i) - 'a'];
+                    else
+                        return false;
+                }
             }
 
             return node.isEnd();
@@ -60,10 +70,6 @@ public class DictionaryHandler {
         }
 
         return false;
-    }
-
-    public static void main(String[] args) {
-        createWordList();
     }
 
 }
