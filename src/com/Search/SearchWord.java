@@ -16,17 +16,16 @@ public class SearchWord extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         String word = request.getParameter("partialWord");
-        String responseString;
-        boolean exists = DictionaryHandler.checkWordExists(word);
-        if (exists)
-            responseString = "It is a valid word";
-        else
-            responseString = "It is not a valid word";
-
-        response.setStatus(200);
-        response.setContentType("text/plain;charset=UTF-8");
+        String checkedString = DictionaryHandler.checkWordExists(word);
         PrintWriter out = response.getWriter();
-        out.println(responseString);
+        response.setContentType("text/plain;charset=UTF-8");
+        if (checkedString != null) {
+            response.setStatus(200);
+            out.println(checkedString);
+        } else {
+            response.setStatus(200);
+            out.println("Invalid response!!!");
+        }
 
     }
 

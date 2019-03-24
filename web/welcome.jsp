@@ -17,8 +17,8 @@
 <body>
 <%DictionaryHandler.createWordList();%>
 <div id="SearchBox">
-    <p style="font-size: x-large; color: darksalmon;">Please enter the word to search</p>
-    <input type="text" id="wordInputBox" onchange="checkWordExistence()" value="">
+    <p style="font-size: x-large; color: darksalmon;">Start typing in the box below</p>
+    <div contenteditable id="wordInputBox"></div>
     <p id="ResultText"></p>
 </div>
 </body>

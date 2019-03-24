@@ -26,8 +26,6 @@ public class DictionaryHandler {
                 WordNode currentNode;
 
                 while (currentWord != null) {
-                    if (currentWord.equals("very"))
-                        System.out.println("Pausing here...");
                     currentNode = getRootNode();
                     for (int i = 0; i < currentWord.length(); i++) {
                         if (currentNode.NodeList[currentWord.charAt(i) - 'a'] == null)
@@ -48,28 +46,41 @@ public class DictionaryHandler {
 
     }
 
-    public static boolean checkWordExists(String word) {
+    public static String checkWordExists(String word) {
 
+        String returnString = "";
+        StringBuilder currentWord;
         if (wordSetBuilt) {
 
             String[] allWords = word.split(" ");
             WordNode node = rootNode;
+            char charInFocus;
 
             for (int wordNumber = 0; wordNumber < allWords.length; wordNumber++) {
                 node = rootNode;
+                currentWord = new StringBuilder();
                 for (int i = 0; i < allWords[wordNumber].length(); i++) {
-                    if (node.NodeList[allWords[wordNumber].charAt(i) - 'a'] != null)
-                        node = node.NodeList[allWords[wordNumber].charAt(i) - 'a'];
-                    else
-                        return false;
+                    charInFocus = allWords[wordNumber].toLowerCase().charAt(i);
+                    if (charInFocus != '\n') {
+                        if (node.NodeList[charInFocus - 'a'] != null) {
+                            node = node.NodeList[charInFocus - 'a'];
+                            currentWord.append(allWords[wordNumber].charAt(i));
+                        } else {
+                            returnString += "<span class=\"redFont\">" + allWords[wordNumber] + "</span> ";
+                            break;
+                        }
+                    }
+                    if (i == allWords[wordNumber].length() - 1)
+                        returnString += currentWord + " ";
                 }
             }
 
-            return node.isEnd();
-
         }
 
-        return false;
+        if (word.charAt(word.length() - 1) == ' ')
+            return returnString;
+        else
+            return returnString.substring(0, returnString.length() - 1);
     }
 
 }
